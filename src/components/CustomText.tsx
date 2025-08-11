@@ -19,8 +19,8 @@ const CustomText: React.FC<CustomTextProps> = ({
   text,
   children,
   style,
-  fontFamily = 'Gilroy-Medium',
-  size = 14,
+  fontFamily = 'Gilroy-SemiBold',
+  size = 15,
   color,
   ...rest
 }) => {
