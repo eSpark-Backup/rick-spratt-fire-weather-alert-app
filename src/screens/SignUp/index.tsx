@@ -13,6 +13,7 @@ import { RootStackNavigationProp } from '../../navigation/navigation';
 import CustomButton from '../../components/CustomButton';
 import CustomDropdown from '../../components/CustomDropdown';
 import { bgColor } from '../../constants/colors';
+import { zoneData } from '../../constants';
 
 type Props = { navigation: RootStackNavigationProp<'SignUp'> };
 
@@ -27,7 +28,7 @@ export default function SignUpScreen({ navigation }: Props) {
   const [country, setCountry] = useState('');
   const [state, setState] = useState('');
 
-  const [selectedCountry, setSelectedCountry] = useState<string | undefined>();
+  const [selectedZone, setSelectedZone] = useState<string | undefined>();
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -123,9 +124,7 @@ export default function SignUpScreen({ navigation }: Props) {
 
             <View
               style={{
-                // backgroundColor: 'yellow',
                 flex: 1,
-                // height: '00%',
                 justifyContent: 'space-between',
               }}
             >
@@ -146,25 +145,15 @@ export default function SignUpScreen({ navigation }: Props) {
                   </CustomText>
 
                   <CustomDropdown
-                    data={[
-                      { label: 'Alabama', value: 'AL' },
-                      { label: 'Arkansas', value: 'AR' },
-                      { label: 'Oregon', value: 'OR' },
-                      { label: 'Georgia', value: 'GA' },
-                      { label: 'Illinois', value: 'IL' },
-                      { label: 'Kansas', value: 'KS' },
-                      { label: 'Kentucky', value: 'KY' },
-                      { label: 'Louisiana', value: 'LA' },
-                    ]}
-                    placeholder="Select Country"
-                    selectedValue={selectedCountry}
-                    onSelect={item => setSelectedCountry(item.value)}
+                    data={zoneData}
+                    placeholder="Select Zone"
+                    selectedValue={selectedZone}
+                    onSelect={item => setSelectedZone(item.value)}
                     maxHeight={500}
                   />
                 </View>
               )}
 
-              {/* Button */}
               <View style={styles.bottomButtonContainer}>
                 <CustomButton
                   title={step === 1 ? 'Next' : 'Create New Account'}
@@ -172,7 +161,7 @@ export default function SignUpScreen({ navigation }: Props) {
                     if (step === 1) {
                       setStep(2);
                     } else {
-                      navigation.navigate('SignIn');
+                      navigation.navigate('HomeTabs');
                     }
                   }}
                 />
